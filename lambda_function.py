@@ -1,4 +1,3 @@
-import json
 import datetime
 import psycopg2
 from googleapiclient.discovery import build
