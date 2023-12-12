@@ -74,7 +74,11 @@ def store_in_database(conn, video_data):
         duration = video['contentDetails']['duration']
         views = video['statistics']['viewCount']
         likes = video['statistics']['likeCount']
-        comments = video['statistics']['commentCount']
+        # If comments are disabled, set count to -1
+        try:
+            comments = video['statistics']['commentCount']
+        except KeyError:
+            comments = -1
 
         # Execute the query to insert data into the table
         cursor.execute(insert_data_query, (video_id, today_date, publish_date, title, duration, views, likes, comments))
