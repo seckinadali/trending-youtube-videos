@@ -69,10 +69,10 @@ def store_in_database(conn, video_data):
     # Insert data into PostgreSQL
     for video in video_data:
         video_id = video['id']
-        title = video['snippet']['title']
-        publish_date = video['snippet']['publishedAt']
-        duration = video['contentDetails']['duration']
-        views = video['statistics']['viewCount']
+        title = video['snippet'].get('title', 'no_title_provided')
+        publish_date = video['snippet'].get('publishedAt', '0001-01-01')
+        duration = video['contentDetails'].get('duration', -1)
+        views = video['statistics'].get('viewCount', -1)
         likes = video['statistics'].get('likeCount', -1)
         comments = video['statistics'].get('commentCount', -1)
 
