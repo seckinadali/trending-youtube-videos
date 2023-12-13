@@ -67,6 +67,7 @@ def store_in_database(conn, video_data):
     cursor = conn.cursor()
 
     # Insert data into PostgreSQL
+    # Handle missing metrics using dict.get()
     for video in video_data:
         video_id = video['id']
         title = video['snippet'].get('title', 'no_title_provided')
